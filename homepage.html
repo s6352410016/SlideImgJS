@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/homepage.css">
+    <script src="https://kit.fontawesome.com/d47cb01634.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="slides">
+            <figure>
+                <img src="homepageSlideimg/1.jpg" alt="">
+            </figure>
+            <figure>
+                <img src="homepageSlideimg/2.jpg" alt="">
+            </figure>
+            <figure>
+                <img src="homepageSlideimg/3.jpg" alt="">
+            </figure>
+            <figure>
+                <img src="homepageSlideimg/4.jpg" alt="">
+            </figure>
+            <figure>
+                <img src="homepageSlideimg/5.jpg" alt="">
+            </figure>
+            <div class="arrow-left">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="arrow-right">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="dot">
+                <div class="nav" onclick="showNav(0)"></div>
+                <div class="nav" onclick="showNav(1)"></div>
+                <div class="nav" onclick="showNav(2)"></div>
+                <div class="nav" onclick="showNav(3)"></div>
+                <div class="nav" onclick="showNav(4)"></div>
+            </div>
+        </div>
+    </header>
+    <script>
+        const arrow_left = document.querySelector(".arrow-left");
+        const arrow_right = document.querySelector(".arrow-right"); 
+        const img = document.querySelectorAll("figure");
+        const nav = document.querySelectorAll(".nav");
+        var indexValue = 0;
+
+        // ทำให้ nav background เป็นโปร่งใส
+        function navNone() {
+            for(i = 0; i < nav.length; i++){
+                nav[i].style.backgroundColor = "transparent"
+            }
+        }
+
+        // ทำให้ img ทุกๆรูปหายไป
+        function displayNone() {
+            for(i = 0; i < img.length; i++){
+                img[i].style.display = "none";
+            }
+        }
+
+        // กดปุ่นซ้าย
+        arrow_left.addEventListener("click",function(){
+            indexValue--;
+            if(indexValue < 0){
+                indexValue = img.length -1;
+            }
+            navNone();
+            nav[indexValue].style.backgroundColor = "#fff";
+            displayNone();
+            img[indexValue].style.display = "block";
+
+        });
+
+        // กดปุ่มขวา
+        arrow_right.addEventListener("click",function(){
+            indexValue++;
+            if(indexValue > img.length -1){
+                indexValue = 0;
+            }
+            navNone();
+            nav[indexValue].style.backgroundColor = "#fff";
+            displayNone();
+            img[indexValue].style.display = "block";
+        });
+
+        // การแสดงผลเริ่มต้น
+        displayNone();
+        img[indexValue].style.display = "block";
+        nav[indexValue].style.backgroundColor = "#fff";
+
+        // กด Nav
+        function showNav(number) {
+            displayNone();
+            img[number].style.display = "block";
+            navNone();
+            nav[number].style.backgroundColor = "#fff"
+        }
+        
+    </script>
+</body>
+
+</html>
